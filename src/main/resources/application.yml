@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+  jpa:
+    # jpa가 수행하는 sql 확인 가능
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    # 콘솔 확인 위한 always
+    output:
+      ansi:
+        enabled: always
+
+logging:
+  level:
+    org.hibernate.type: trace
