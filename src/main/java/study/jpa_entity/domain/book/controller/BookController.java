@@ -1,10 +1,8 @@
 package study.jpa_entity.domain.book.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import study.jpa_entity.domain.book.entity.Book;
 import study.jpa_entity.domain.book.repository.BookRepository;
 
@@ -23,9 +21,14 @@ public class BookController {
         return bookRepository.findAll();
     }
 
-    @GetMapping("/{book-id]")
-    public Book getBookById(@PathVariable("book-id") Long bookId){
+    @GetMapping("/{book-id}")
+    public Optional<Book> getBookById(@PathVariable("book-id") Long bookId){
         Optional<Book> book = bookRepository.findById(bookId);
         return book;
+    }
+
+    @PostMapping
+    public void addBook(@RequestBody Book newBook){
+        Book savedBook = bookRepository.save(newBook);
     }
 }
