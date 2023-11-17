@@ -1,10 +1,10 @@
-package study.jpa_entity.domain;
+package study.jpa_entity.domain.member.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import study.jpa_entity.domain.enums.Gender;
-import study.jpa_entity.domain.mapping.BookLikes;
-import study.jpa_entity.domain.mapping.Rent;
+import study.jpa_entity.domain.member.entity.enums.Gender;
+import study.jpa_entity.domain.book.entity.BookLikes;
+import study.jpa_entity.domain.rent.entity.Rent;
 
 import java.util.ArrayList;
 import java.util.List;

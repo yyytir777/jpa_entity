@@ -1,16 +1,16 @@
-package study.jpa_entity.domain.mapping;
+package study.jpa_entity.domain.rent.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import study.jpa_entity.domain.Book;
-import study.jpa_entity.domain.Member;
+import study.jpa_entity.domain.book.entity.Book;
+import study.jpa_entity.domain.member.entity.Member;
 
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class BookLikes {
+public class Rent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
