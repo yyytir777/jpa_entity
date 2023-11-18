@@ -23,7 +23,4 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_category_id")
     private BookCategory bookCategory;
-
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<BookHashTag> bookHashTagList = new ArrayList<>();
 }

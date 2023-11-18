@@ -19,7 +19,4 @@ public class HashTag {
     private Long id;
 
     private String name;
-
-    @OneToMany(mappedBy = "hashTag", cascade = CascadeType.ALL)
-    private List<BookHashTag> bookHashTagList = new ArrayList<>();
 }

@@ -1,4 +1,4 @@
-package study.jpa_entity.domain.book.entity;
+package study.jpa_entity.domain.booklikes.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

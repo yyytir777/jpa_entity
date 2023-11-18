@@ -6,9 +6,12 @@ import study.jpa_entity.domain.member.entity.Member;
 import java.util.List;
 
 @Repository
-public class H2MemberRepository implements MemberRepository{
+public abstract class H2MemberRepository implements MemberRepository{
     @Override
     public List<Member> findAll() {
         return null;
     }
+
+    @Override
+    public
 }

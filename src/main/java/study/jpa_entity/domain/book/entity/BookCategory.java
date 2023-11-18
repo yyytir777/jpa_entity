@@ -20,6 +20,4 @@ public class BookCategory {
 
     private String name;
 
-    @OneToMany(mappedBy = "bookCategory", cascade = CascadeType.ALL)
-    private List<Book> bookList = new ArrayList<>();
 }

@@ -3,11 +3,6 @@ package study.jpa_entity.domain.member.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import study.jpa_entity.domain.member.entity.enums.Gender;
-import study.jpa_entity.domain.book.entity.BookLikes;
-import study.jpa_entity.domain.rent.entity.Rent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity // 해당 클래스를 JPA Entity로 지정
 @Getter // lombok 라이브러리 : 자동으로 getter 메서드 생성 -> JPA에서 entity 클래스에 접근하기 위함
@@ -41,10 +36,4 @@ public class Member {
     // cascade.persist : 새로운 entity를 추가할때만 cascade 적용
     // cascade.merge : entity를 병합할때만 cascade 적용
     // ...
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    // 하위 entity가 여러개 일 수 있으므로 List로 받음
-    private List<Rent> rentList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<BookLikes> bookLikesList = new ArrayList<>();
 }
