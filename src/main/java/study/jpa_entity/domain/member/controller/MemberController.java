@@ -1,12 +1,9 @@
 package study.jpa_entity.domain.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import study.jpa_entity.domain.member.entity.Member;
-import study.jpa_entity.domain.member.repository.MemberRepository;
+import study.jpa_entity.domain.member.service.MemberService;
 
 import java.util.List;
 
@@ -15,11 +12,28 @@ import java.util.List;
 public class MemberController {
 
     @Autowired
-    private MemberRepository memberRepository;
+    private MemberService memberService;
 
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
+    // 회원가입
+    @PostMapping("/sign-up")
+    public void RegisterMember(){
+
+    }
+
+    // 회원탈퇴
+    @DeleteMapping("/withdraw")
+    public void WithdrawMember(){
+
+    }
+
+    // 로그인
     @GetMapping
     public List<Member> getAllUsers(){
-        return memberRepository.findAll();
+        return memberService.findAll();
     }
 
     @PostMapping

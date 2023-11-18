@@ -11,7 +11,4 @@ public abstract class H2MemberRepository implements MemberRepository{
     public List<Member> findAll() {
         return null;
     }
-
-    @Override
-    public
 }

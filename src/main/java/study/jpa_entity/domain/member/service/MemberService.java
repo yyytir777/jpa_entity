@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import study.jpa_entity.domain.member.entity.Member;
 import study.jpa_entity.domain.member.repository.MemberRepository;
 
+import java.util.List;
+
 @Service
 public class MemberService {
 
@@ -17,5 +19,7 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-
+    public List<Member> findAll(){
+        return memberRepository.findAll();
+    }
 }
