@@ -26,17 +26,6 @@ public class BookLikesService {
 
     private Long id = 0L;
 
-    public void likeBook(Member member, Book book){
-        BookLikes bookLikes = new BookLikes(id, member, book);
-        bookLikesRepository.save(bookLikes);
-        id++;
-    }
-
-    public void unlikeBook(Member member, Book book){
-        Optional<BookLikes> bookLikes = bookLikesRepository.findByMemberAndBook(member, book);
-        bookLikesRepository.delete(bookLikes.get());
-    }
-
     // 책 like
     public void likeBook(Long bookId, Long memberId){
         // bookId, memberId로는 member, book 객체 생성 x
@@ -45,7 +34,10 @@ public class BookLikesService {
         Member member = memberRepository.findById(memberId).orElseThrow();
 
         BookLikes bookLikes = new BookLikes(id, member, book);
+        // BookLikes bookLikes = new BookLikes(id, memberId, bookId) 로는 불가능한지?
+
         bookLikesRepository.save(bookLikes);
+        id++;
     }
 
 
