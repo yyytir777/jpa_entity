@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import study.jpa_entity.domain.book.entity.Book;
 import study.jpa_entity.domain.book.service.BookService;
+import study.jpa_entity.domain.booklikes.repository.BookLikesRepository;
 import study.jpa_entity.domain.booklikes.service.BookLikesService;
 
 import java.util.List;
@@ -13,12 +14,14 @@ import java.util.Optional;
 @RequestMapping("/books")
 public class BookController {
 
-    @Autowired
-    private BookService bookService;
+    private final BookService bookService;
+    private final BookLikesService bookLikesService;
 
     @Autowired
-    private BookLikesService bookLikesService;
-
+    public BookController(BookService bookService, BookLikesService bookLikesService){
+        this.bookService = bookService;
+        this.bookLikesService = bookLikesService;
+    }
     // 모든 책 조회
     @GetMapping
     public List<Book> getAllBook() {
@@ -41,15 +44,21 @@ public class BookController {
     }
 
     // 책 좋아요
-    @PatchMapping("/{book-id}/like")
+    @PostMapping("/{bookId}/like")
     // "{id}"형태는 @PathVariable 형태로,
     public void likeBook(@PathVariable Long bookId, @RequestParam Long memberId) {
         bookLikesService.likeBook(bookId, memberId);
     }
 
     // 책 좋아요 취소
-    @PatchMapping("/{book-id}/unlike")
+    @PostMapping("/{bookId}/unlike")
     public void unlikeBook(@PathVariable Long bookId, @RequestParam Long memberId) {
         bookLikesService.unlikeBook(bookId, memberId);
+    }
+
+    // 책 좋아요 개수
+    @GetMapping("/{bookId}/like-count")
+    public void likeBookCount(@PathVariable Long bookId){
+        bookLikesService.likeBookCount(bookId);
     }
 }

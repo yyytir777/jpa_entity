@@ -14,15 +14,16 @@ import java.util.Optional;
 @Service
 public class BookLikesService {
 
-    @Autowired
-    private BookLikesRepository bookLikesRepository;
+    private final BookLikesRepository bookLikesRepository;
+    private final BookRepository bookRepository;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    private BookRepository bookRepository;
-
-    @Autowired
-    private MemberRepository memberRepository;
-
+    public BookLikesService(BookLikesRepository bookLikesRepository, BookRepository bookRepository, MemberRepository memberRepository) {
+        this.bookLikesRepository = bookLikesRepository;
+        this.bookRepository = bookRepository;
+        this.memberRepository = memberRepository;
+    }
 
     private Long id = 0L;
 
@@ -46,5 +47,10 @@ public class BookLikesService {
         // bookId, memberId로 레코드 찾기
         Optional<BookLikes> bookLikes = bookLikesRepository.findByBookIdAndMemberId(bookId, memberId);
         bookLikesRepository.delete(bookLikes.get());
+    }
+
+    // 책 좋아요 개수
+    public Long likeBookCount(Long bookId){
+        return bookLikesRepository.countByBookId(bookId);
     }
 }

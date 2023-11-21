@@ -1,5 +1,6 @@
 package study.jpa_entity.domain.book.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import study.jpa_entity.domain.book.entity.Book;
 import study.jpa_entity.domain.book.repository.BookRepository;
@@ -10,8 +11,12 @@ import java.util.Optional;
 @Service
 public class BookService {
 
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
+    @Autowired
+    public BookService(BookRepository bookRepository){
+        this.bookRepository = bookRepository;
+    }
     // 책을 등록하는 기능
     public void saveBook(Book book){
         bookRepository.save(book);

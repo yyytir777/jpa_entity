@@ -14,17 +14,4 @@ public class BookDTO {
     public void setPrice(Long price) {
         this.price = price;
     }
-
-    public static BookDTO fromEntity(Book book){
-        BookDTO bookDTO = new BookDTO();
-        bookDTO.setName(book.getName());
-        bookDTO.setPrice(book.getPrice());
-        return bookDTO;
-    }
-
-    public Book toEntity(){
-        Book book = new Book();
-        book.set
-    }
-
 }
