@@ -19,7 +19,7 @@ public class MemberController {
     }
 
     // 회원가입
-    @PostMapping("/sign-up")
+    @PostMapping("/signup")
     public void RegisterMember(){
 
     }
@@ -31,13 +31,24 @@ public class MemberController {
     }
 
     // 로그인
+    @PostMapping("/login")
+    public void login(){
+
+    }
+
+    // 로그아웃
+    @PostMapping("/logout")
+    public void logout(){
+
+    }
+
+    // 회원 정보 수정
+    @PatchMapping("/{userId}")
+
+
+    // 모든 회원 정보 조회
     @GetMapping
     public List<Member> getAllUsers(){
         return memberService.findAll();
-    }
-
-    @PostMapping
-    public void join(){
-
     }
 }

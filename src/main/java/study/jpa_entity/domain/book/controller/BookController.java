@@ -58,7 +58,7 @@ public class BookController {
 
     // 책 좋아요 개수
     @GetMapping("/{bookId}/like-count")
-    public void likeBookCount(@PathVariable Long bookId){
-        bookLikesService.likeBookCount(bookId);
+    public Long likeBookCount(@PathVariable Long bookId){
+        return bookLikesService.likeBookCount(bookId);
     }
 }
