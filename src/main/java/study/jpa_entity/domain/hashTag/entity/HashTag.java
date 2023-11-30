@@ -2,10 +2,6 @@ package study.jpa_entity.domain.hashTag.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import study.jpa_entity.domain.book.entity.BookHashTag;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter

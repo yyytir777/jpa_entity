@@ -1,18 +1,23 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/test
-    driver-class-name: org.h2.Driver
-    username: sa
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/study_db
+    username: root
+    password: 1108
+
+
   jpa:
-    # jpa가 수행하는 sql 확인 가능
-    show-sql: true
+    open-in-view: true
     hibernate:
       ddl-auto: update
-    # 콘솔 확인 위한 always
-    output:
-      ansi:
-        enabled: always
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+
 
 logging:
   level:
-    org.hibernate.type: trace
+    org.hibernate.SQL: debug
