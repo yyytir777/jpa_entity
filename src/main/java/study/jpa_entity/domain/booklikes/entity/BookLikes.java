@@ -23,4 +23,9 @@ public class BookLikes {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private Book book;
+
+    public BookLikes(Member member, Book book) {
+        this.member = member;
+        this.book = book;
+    }
 }

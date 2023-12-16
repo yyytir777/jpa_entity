@@ -1,4 +1,4 @@
-package study.jpa_entity.domain.bookcategory;
+package study.jpa_entity.domain.bookcategory.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,4 +20,7 @@ public class BookCategory {
 
     private String name;
 
+    public BookCategory(String name) {
+        this.name = name;
+    }
 }

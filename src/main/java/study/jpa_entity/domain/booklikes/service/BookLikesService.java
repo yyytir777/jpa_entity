@@ -25,7 +25,6 @@ public class BookLikesService {
         this.memberRepository = memberRepository;
     }
 
-    private Long id = 0L;
 
     // 책 like
     public void likeBook(Long bookId, Long memberId){
@@ -34,11 +33,9 @@ public class BookLikesService {
         Book book = bookRepository.findById(bookId).orElseThrow();
         Member member = memberRepository.findById(memberId).orElseThrow();
 
-        BookLikes bookLikes = new BookLikes(id, member, book);
+        BookLikes bookLikes = new BookLikes(member, book);
         // BookLikes bookLikes = new BookLikes(id, memberId, bookId) 로는 불가능한지?
-
         bookLikesRepository.save(bookLikes);
-        id++;
     }
 
 

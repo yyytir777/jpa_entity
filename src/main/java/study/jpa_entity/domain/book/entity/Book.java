@@ -1,9 +1,8 @@
 package study.jpa_entity.domain.book.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import study.jpa_entity.domain.bookcategory.BookCategory;
+import study.jpa_entity.domain.bookcategory.entity.BookCategory;
 
 @Entity
 @Getter

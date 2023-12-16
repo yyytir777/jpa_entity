@@ -1,7 +1,8 @@
-package study.jpa_entity.domain.bookcategory;
+package study.jpa_entity.domain.bookcategory.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import study.jpa_entity.domain.bookcategory.entity.BookCategory;
+
 
 public interface BookCategoryRepository extends JpaRepository<BookCategory, Long> {
 

@@ -2,54 +2,44 @@ package study.jpa_entity.domain.book.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import study.jpa_entity.domain.book.dto.BookDTO;
 import study.jpa_entity.domain.book.entity.Book;
-import study.jpa_entity.domain.book.service.BookService;
-import study.jpa_entity.domain.bookcategory.BookCategory;
-import study.jpa_entity.domain.bookcategory.BookCategoryService;
-import study.jpa_entity.domain.booklikes.repository.BookLikesRepository;
+import study.jpa_entity.domain.book.service.BookServiceImpl;
 import study.jpa_entity.domain.booklikes.service.BookLikesService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/books")
 public class BookController {
 
-    private final BookService bookService;
+    private final BookServiceImpl bookServiceImpl;
     private final BookLikesService bookLikesService;
-    private final BookCategoryService bookCategoryService;
 
     @Autowired
-    public BookController(BookService bookService, BookLikesService bookLikesService, BookCategoryService bookCategoryService) {
-        this.bookService = bookService;
+    public BookController(BookServiceImpl bookServiceImpl, BookLikesService bookLikesService) {
+        this.bookServiceImpl = bookServiceImpl;
         this.bookLikesService = bookLikesService;
-        this.bookCategoryService = bookCategoryService;
     }
 
 
     // 모든 책 조회
     @GetMapping
     public List<Book> getAllBook() {
-        List<Book> books = bookService.getAllBook();
+        List<Book> books = bookServiceImpl.getAllBook();
         return books;
     }
 
     // 책 조회
     @GetMapping("/{book-id}")
     public Book getBookById(@PathVariable("book-id") Long bookId) {
-        Book book = bookService.getBookById(bookId).orElseThrow();
+        Book book = bookServiceImpl.getBookById(bookId).orElseThrow();
         return book;
     }
 
     // 책 등록
     @PostMapping
-    public void addBook(@RequestBody BookDTO newBookDTO) {
-        Long bookCategoryId = newBookDTO.getBook_category_id();
-        BookCategory bookCategory = bookCategoryService.findById(bookCategoryId);
-        Book book = newBookDTO.toEntity(bookCategory);
-        bookService.saveBook(book);
+    public void addBook(@RequestBody Book newBook) {
+        bookServiceImpl.saveBook(newBook);
         // BookService에서 저장하는 기능 생성
     }
 
