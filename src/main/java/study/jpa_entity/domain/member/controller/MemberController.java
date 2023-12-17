@@ -2,6 +2,7 @@ package study.jpa_entity.domain.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import study.jpa_entity.domain.member.dto.MemberDTO;
 import study.jpa_entity.domain.member.entity.Member;
 import study.jpa_entity.domain.member.service.MemberService;
 
@@ -19,8 +20,9 @@ public class MemberController {
     }
 
     // 회원가입
-    @PostMapping("/signup")
-    public void RegisterMember(){
+    @PostMapping("/join")
+    public void joinMember(@RequestBody MemberDTO memberDTO){
+        memberService.join(memberDTO);
 
     }
 
@@ -32,8 +34,8 @@ public class MemberController {
 
     // 로그인
     @PostMapping("/login")
-    public void login(){
-
+    public void login(@RequestParam MemberDTO memberDTO){
+        memberService.login(memberDTO);
     }
 
     // 로그아웃

@@ -1,9 +1,10 @@
 package study.jpa_entity.domain.rent.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
 import study.jpa_entity.domain.book.entity.Book;
 import study.jpa_entity.domain.member.entity.Member;
+
+import javax.persistence.*;
 
 @Entity
 @Getter

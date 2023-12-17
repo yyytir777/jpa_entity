@@ -1,8 +1,11 @@
 package study.jpa_entity.domain.member.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
 import study.jpa_entity.domain.member.entity.enums.Gender;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // 해당 클래스를 JPA Entity로 지정
 @Getter // lombok 라이브러리 : 자동으로 getter 메서드 생성 -> JPA에서 entity 클래스에 접근하기 위함
@@ -20,7 +23,10 @@ public class Member {
     private long id;
 
     @Column(nullable = false, length = 30)
-    private String name;
+    private String username;
+
+    @Column(nullable = false, length = 30)
+    private long password;
 
     @Column(nullable = false, length = 30)
     private String nickname;
@@ -29,6 +35,10 @@ public class Member {
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar(10)")
     private Gender gender;
+
+    @ElementCollection(fetch = FetchType.EAGER) //roles 컬렉션
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
 
     // mappedBy : 연관관계의 주인
     // cascade : entity 변경이나 삭제같은 연산에서 자식 entity에 어떤 영향을 줄건지
