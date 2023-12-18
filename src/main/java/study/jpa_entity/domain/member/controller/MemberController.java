@@ -27,6 +27,7 @@ public class MemberController {
     }
 
     // 회원탈퇴
+    // 로그아웃 + db 삭제
     @DeleteMapping("/withdraw")
     public void WithdrawMember(){
 
@@ -39,6 +40,7 @@ public class MemberController {
     }
 
     // 로그아웃
+    // JWT정보에 대해 막는것을 등록
     @PostMapping("/logout")
     public void logout(){
 

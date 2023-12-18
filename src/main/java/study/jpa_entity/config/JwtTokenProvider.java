@@ -1,8 +1,6 @@
 package study.jpa_entity.config;
 
 import io.jsonwebtoken.*;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,19 +13,17 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
-@Slf4j
 @Component
 // Spring Security와 WJT 토큰을 사용하여 인증과 권한 부여 처리
 // => JWT토큰 생성, 복호화, 검증 기능 구현
 public class JwtTokenProvider {
 
-    private String secretKey = "webfirewood";
+    private String secretKey = "asdfasdf";
 
     private long tokenValidTime = 30 * 60 * 1000L;     // 토큰 유효시간 30분
 
     private final UserDetailsService userDetailsService;
 
-    @Autowired
     public JwtTokenProvider(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }

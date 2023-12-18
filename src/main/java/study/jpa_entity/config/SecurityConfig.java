@@ -8,14 +8,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.security.Security;
+
 
 @Configuration
 @EnableWebSecurity
@@ -30,7 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                //h2 콘솔 사용
                 .csrf().disable().headers().frameOptions().disable()
                 .and()
 
@@ -40,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //URL 관리
                 .authorizeRequests()
-                .antMatchers("/join", "/login").permitAll()
+                .antMatchers("/join", "/login","/books", "/book-category").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
