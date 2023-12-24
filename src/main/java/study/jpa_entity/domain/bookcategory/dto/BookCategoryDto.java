@@ -1,4 +1,4 @@
-package study.jpa_entity.domain.member.dto;
+package study.jpa_entity.domain.bookcategory.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberDTO {
-
-    private String username;
-    private String password;
-
+public class BookCategoryDto {
+    private Long id;
+    private String name;
 }

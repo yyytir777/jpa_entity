@@ -20,13 +20,13 @@ public class Member {
     // Primary key 지정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false, length = 30)
     private String username;
 
-    @Column(nullable = false, length = 30)
-    private long password;
+    @Column(nullable = false, length = 150)
+    private String password;
 
     @Column(nullable = false, length = 30)
     private String nickname;

@@ -2,7 +2,7 @@ package study.jpa_entity.domain.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import study.jpa_entity.domain.member.dto.MemberDTO;
+import study.jpa_entity.domain.member.dto.MemberRequestDto;
 import study.jpa_entity.domain.member.entity.Member;
 import study.jpa_entity.domain.member.service.MemberService;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class MemberController {
 
     @Autowired
-    private MemberService memberService;
+    private final MemberService memberService;
 
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
@@ -21,22 +21,25 @@ public class MemberController {
 
     // 회원가입
     @PostMapping("/join")
-    public void joinMember(@RequestBody MemberDTO memberDTO){
-        memberService.join(memberDTO);
+    public void joinMember(@RequestBody MemberRequestDto memberRequestDto){
+        memberService.join(memberRequestDto);
 
     }
 
     // 회원탈퇴
     // 로그아웃 + db 삭제
-    @DeleteMapping("/withdraw")
-    public void WithdrawMember(){
-
+    @DeleteMapping("/withdraw/{userId}")
+    public void WithdrawMember(@PathVariable Long userId){
+        /**
+         * withdraw : 회원 삭제
+         */
+        memberService.withdraw(userId);
     }
 
     // 로그인
     @PostMapping("/login")
-    public void login(@RequestParam MemberDTO memberDTO){
-        memberService.login(memberDTO);
+    public void login(@RequestParam MemberRequestDto memberRequestDto){
+        memberService.login(memberRequestDto);
     }
 
     // 로그아웃
