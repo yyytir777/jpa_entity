@@ -1,6 +1,8 @@
 package study.jpa_entity.domain.bookcategory.entity;
 
 import lombok.*;
+import study.jpa_entity.domain.book.entity.Book;
+import study.jpa_entity.domain.bookcategory.dto.BookCategoryDto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +22,11 @@ public class BookCategory {
 
     private String name;
 
-    public BookCategory(String name) {
-        this.name = name;
+    public BookCategoryDto toDto(){
+        BookCategoryDto bookCategoryDto = BookCategoryDto.builder()
+                .id(this.getId())
+                .name(this.getName()).build();
+
+        return bookCategoryDto;
     }
 }

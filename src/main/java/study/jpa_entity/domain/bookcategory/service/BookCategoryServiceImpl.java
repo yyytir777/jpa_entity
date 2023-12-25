@@ -2,6 +2,7 @@ package study.jpa_entity.domain.bookcategory.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import study.jpa_entity.domain.bookcategory.dto.BookCategoryDto;
 import study.jpa_entity.domain.bookcategory.repository.BookCategoryRepository;
 import study.jpa_entity.domain.bookcategory.entity.BookCategory;
 
@@ -19,7 +20,9 @@ public class BookCategoryServiceImpl implements BookCategoryService{
 
     // 카테고리 등록하는 기능
     @Override
-    public void saveBookCategory(BookCategory bookCategory) {
+    public void saveBookCategory(BookCategoryDto bookCategoryDto) {
+        BookCategory bookCategory = BookCategory.builder()
+                        .name(bookCategoryDto.getName()).build();
         bookCategoryRepository.save(bookCategory);
     }
 

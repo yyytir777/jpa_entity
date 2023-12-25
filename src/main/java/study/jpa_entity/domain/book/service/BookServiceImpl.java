@@ -1,5 +1,6 @@
 package study.jpa_entity.domain.book.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import study.jpa_entity.domain.book.dto.BookRequestDto;
 import study.jpa_entity.domain.book.entity.Book;
@@ -17,6 +18,7 @@ public class BookServiceImpl implements BookService{
     private final BookRepository bookRepository;
     private final BookCategoryRepository bookCategoryRepository;
 
+    @Autowired
     public BookServiceImpl(BookRepository bookRepository, BookCategoryRepository bookCategoryRepository) {
         this.bookRepository = bookRepository;
         this.bookCategoryRepository = bookCategoryRepository;

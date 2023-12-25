@@ -6,13 +6,13 @@ import study.jpa_entity.domain.book.dto.BookRequestDto;
 import study.jpa_entity.domain.book.dto.BookResponseDto;
 import study.jpa_entity.domain.book.entity.Book;
 import study.jpa_entity.domain.book.service.BookService;
-import study.jpa_entity.domain.book.service.BookServiceImpl;
 import study.jpa_entity.domain.bookcategory.dto.BookCategoryDto;
+import study.jpa_entity.domain.booklikes.dto.BookLikesRequestDto;
+import study.jpa_entity.domain.booklikes.entity.BookLikes;
 import study.jpa_entity.domain.booklikes.service.BookLikesService;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @RestController
@@ -23,11 +23,10 @@ public class BookController {
     private final BookLikesService bookLikesService;
 
     @Autowired
-    public BookController(BookServiceImpl bookService, BookLikesService bookLikesService) {
+    public BookController(BookService bookService, BookLikesService bookLikesService) {
         this.bookService = bookService;
         this.bookLikesService = bookLikesService;
     }
-
 
     // 모든 책 조회
     @GetMapping
@@ -76,7 +75,11 @@ public class BookController {
     @PostMapping("/{bookId}/like")
     // "{id}"형태는 @PathVariable 형태로,
     public void likeBook(@PathVariable Long bookId, @RequestParam Long memberId) {
-        bookLikesService.likeBook(bookId, memberId);
+        BookLikesRequestDto bookLikesRequestDto = BookLikesRequestDto.builder()
+                .book_id(bookId)
+                .member_id(memberId).build();
+
+        bookLikesService.likeBook(bookLikesRequestDto);
     }
 
     // 책 좋아요 취소
