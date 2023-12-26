@@ -83,7 +83,7 @@ public class BookController {
     }
 
     // 책 좋아요 취소
-    @PostMapping("/{bookId}/unlike")
+    @DeleteMapping("/{bookId}/unlike")
     public void unlikeBook(@PathVariable Long bookId, @RequestParam Long memberId) {
         bookLikesService.unlikeBook(bookId, memberId);
     }

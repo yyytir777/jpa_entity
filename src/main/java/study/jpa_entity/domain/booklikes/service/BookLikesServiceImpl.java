@@ -30,7 +30,8 @@ public class BookLikesServiceImpl implements BookLikesService{
     // 책 like
     public void likeBook(BookLikesRequestDto bookLikesRequestDto){
         BookLikes bookLikes = BookLikes.builder()
-                .book(bookRepository.findById(bookLikesRequestDto.getId()).get())
+                .id(bookLikesRequestDto.getId())
+                .book(bookRepository.findById(bookLikesRequestDto.getBook_id()).get())
                 .member(memberRepository.findById(bookLikesRequestDto.getMember_id()).get()).build();
         bookLikesRepository.save(bookLikes);
     }
