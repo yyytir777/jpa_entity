@@ -1,5 +1,9 @@
 package study.jpa_entity.domain.book.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import study.jpa_entity.domain.book.dto.BookRequestDto;
@@ -30,6 +34,16 @@ public class BookController {
 
     // 모든 책 조회
     @GetMapping
+    @Operation(summary = "모든 책 조회 API", description = "/books")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200",description = "OK, 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "acess 토큰 만료"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "acess 토큰 모양이 이상함"),
+    })
+    @Parameters({
+            @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
+    })
     public List<BookResponseDto> getAllBook() {
         List<Book> books = bookService.getAllBook();
 

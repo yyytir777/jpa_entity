@@ -2,12 +2,10 @@ package study.jpa_entity.domain.booklikes.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import study.jpa_entity.domain.book.entity.Book;
 import study.jpa_entity.domain.book.repository.BookRepository;
 import study.jpa_entity.domain.booklikes.dto.BookLikesRequestDto;
 import study.jpa_entity.domain.booklikes.entity.BookLikes;
 import study.jpa_entity.domain.booklikes.repository.BookLikesRepository;
-import study.jpa_entity.domain.member.entity.Member;
 import study.jpa_entity.domain.member.repository.MemberRepository;
 
 import java.util.Optional;
@@ -21,7 +19,7 @@ public class BookLikesServiceImpl implements BookLikesService{
 
     @Autowired
     public BookLikesServiceImpl(BookLikesRepository bookLikesRepository, BookRepository bookRepository, MemberRepository memberRepository) {
-        this.bookLikesRepository = bookLikesRepository;
+            this.bookLikesRepository = bookLikesRepository;
         this.bookRepository = bookRepository;
         this.memberRepository = memberRepository;
     }
@@ -29,6 +27,12 @@ public class BookLikesServiceImpl implements BookLikesService{
 
     // 책 like
     public void likeBook(BookLikesRequestDto bookLikesRequestDto){
+        // 이미 좋아요를 눌렀을 때
+        Optional<BookLikes> optionalBookLikes = bookLikesRepository.findById(bookLikesRequestDto.getId());
+        if (optionalBookLikes.isPresent()){
+            return;
+        }
+
         BookLikes bookLikes = BookLikes.builder()
                 .id(bookLikesRequestDto.getId())
                 .book(bookRepository.findById(bookLikesRequestDto.getBook_id()).get())
@@ -41,6 +45,9 @@ public class BookLikesServiceImpl implements BookLikesService{
     public void unlikeBook(Long bookId, Long memberId){
         // bookId, memberId로 레코드 찾기
         Optional<BookLikes> bookLikes = bookLikesRepository.findByBookIdAndMemberId(bookId, memberId);
+        if (bookLikes.isEmpty()){
+            return;
+        }
         bookLikesRepository.delete(bookLikes.get());
     }
 
